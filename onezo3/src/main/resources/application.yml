@@ -1,0 +1,17 @@
+spring:
+  messages:
+    basename: messages
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/onezo?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1234
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.onezogreen.onezo3
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
