@@ -18,6 +18,6 @@ public class ReviewVo {
     private String review;
     private String reply;
     private reviewDelete_yn reviewDelete_yn;
-    private replyDelete_yn replyDeleteYn;
+    private replyDelete_yn replyDelete_yn;
 
 }
