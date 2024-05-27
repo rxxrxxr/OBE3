@@ -25,4 +25,11 @@
         where review_id = #{review_id}
     </update>
 
+    <select id="selectReviewReply"
+            parameterType="ReviewVo">
+        select reply, review, star
+        from review
+        where store_id = #{store_id}
+    </select>
+
 </mapper>
