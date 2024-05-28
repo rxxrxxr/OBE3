@@ -31,6 +31,9 @@ public class ScheduleController {
     @Operation(summary = "일정을 추가합니다", description = "날짜 포맷은 yyyy-mm-dd로 맞춰주세요")
     public boolean insertSchedule(@PathVariable Long store_id, @RequestBody ScheduleVo scheduleVo){
         boolean check = scheduleService.scheduleInsert(store_id, scheduleVo);
+        if(check == false){
+            throw new BizException(ErrorCode.INSERTFAIL);
+        }
         return check;
     }
 
@@ -38,6 +41,9 @@ public class ScheduleController {
     @Operation(summary = "일정을 수정합니다", description = "날짜 포맷은 yyyy-mm-dd로 맞춰주세요")
     public boolean updateSchedule(@PathVariable Long schedule_id, @RequestBody ScheduleVo scheduleVo){
         boolean check = scheduleService.scheduleUpdate(schedule_id, scheduleVo);
+        if(check == false){
+            throw new BizException(ErrorCode.UPDATEFAIL);
+        }
         return check;
     }
 

@@ -30,7 +30,10 @@ public class MenuController {
     @Operation(summary = "메뉴에 품절상태를 바꿉니다", description = "픔절여부 N -> Y 또는 Y -> N")
     public boolean changeSoldOut(@PathVariable Long store_id, @PathVariable Long menu_id, @RequestBody MenuVo menuVo){
         boolean soldOutCheck = menuService.soldOutChange(store_id, menu_id, menuVo);
-        return true;
+        if(soldOutCheck == false){
+            throw new BizException(ErrorCode.UPDATEFAIL);
+        }
+        return soldOutCheck;
     }
 
 }

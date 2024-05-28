@@ -21,6 +21,6 @@ public class MenuService {
         menuVo.setStore_id(store_id);
         menuVo.setMenu_id(menu_id);
         boolean soldOutCheck = menuMapper.soldOutChange(menuVo);
-        return true;
+        return soldOutCheck;
     }
 }
