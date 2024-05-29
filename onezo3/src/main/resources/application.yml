@@ -18,3 +18,37 @@ mybatis:
 p3:
   jwt:
     secret: 3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject
+
+
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui/index.html
+    openapi-ui:
+      path: /v3/api-docs
+
+  openapi: "3.0.0"
+  info:
+    title: onezo3
+    version: 1.0.0
+  paths:
+    /auth/**:
+      get:
+        description: 인증이 필요 없는 공개 정보를 검색합니다.
+        responses:
+          '200':
+            description: ok
+      post:
+        description: 인증이 필요 없는 데이터를 제출합니다.
+        responses:
+          '200':
+            description: ok
+      put:
+        description: 인증이 필요 없는 데이터를 제출합니다.
+        responses:
+          '200':
+            description: ok
+      delete:
+        description: 인증이 필요 없는 데이터를 제출합니다.
+        responses:
+          '200':
+            description: ok

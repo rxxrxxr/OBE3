@@ -23,6 +23,8 @@ public class TokenManager {
         return Jwts.builder()
                 .setSubject("onezo3Token")
                 .claim("email",uservo.getEmail())
+                .claim("manager_id",uservo.getManager_id())
+                .claim("store_id",uservo.getStore_id())
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*15))
                 .signWith(hmacShaKeyFor(mykey.getBytes()))
                 .compact();

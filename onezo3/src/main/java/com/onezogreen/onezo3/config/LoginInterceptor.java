@@ -55,6 +55,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(
                     UserVo.builder()
                             .email(jws.getPayload().get("email").toString())
+                            .store_id(Long.parseLong(jws.getPayload().get("store_id").toString()))
+                            .manager_id(Long.parseLong(jws.getPayload().get("manager_id").toString()))
                             .build(),
                     null,
                     roles

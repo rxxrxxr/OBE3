@@ -4,9 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.onezogreen.onezo3.login.LoginMapper">
-    <insert id="loginInsert" parameterType="com.onezogreen.onezo3.user.UserVo">
-        INSERT INTO user(email,password)
-        VALUES (#{email},#{password})
-    </insert>
+    <select id="loginSelect"
+            resultType="UserVo">
+        SELECT * FROM manager WHERE email = #{email} AND password=#{password}
+    </select>
+<!--    email select-->
+    <select id="selectUserByEmail" resultType="userVo" parameterType="String">
+        SELECT * FROM manager WHERE email = #{email}
+    </select>
+
+
 
 </mapper>

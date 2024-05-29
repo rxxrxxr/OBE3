@@ -1,4 +1,4 @@
-package com.onezogreen.onezo3.user;
+package com.onezogreen.onezo3.login;
 
 import lombok.*;
 
@@ -8,9 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserVo {
+public class LoginRequest {
     private String email;
     private String password;
-    private Long manager_id;
-    private Long store_id;
+
 }
