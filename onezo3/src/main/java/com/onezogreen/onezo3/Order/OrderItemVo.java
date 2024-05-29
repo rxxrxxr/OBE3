@@ -1,4 +1,4 @@
-package com.onezogreen.onezo3.order;
+package com.onezogreen.onezo3.Order;
 
 import lombok.*;
 

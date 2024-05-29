@@ -1,24 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onezogreen.onezo3.order.OrderMapper">
-    <select id="getOrdersByStore" resultType="OrderVo">
-        SELECT * FROM orders WHERE store_id = #{storeId}
-    </select>
-
-    <update id="acceptOrder">
-        UPDATE orders SET status = 'Accepted' WHERE order_id = #{orderId}
-    </update>
-
-    <update id="rejectOrder">
-        UPDATE orders SET status = 'Rejected' WHERE order_id = #{orderId}
-    </update>
-
-    <select id="getOrderStatus" resultType="OrderVo">
-        SELECT * FROM orders WHERE store_id = #{storeId}
-    </select>
-
-    <select id="getOrderItemsByOrderId" resultType="OrderItemVo">
-        SELECT * FROM order_item WHERE order_id = #{orderId}
-    </select>
+    <select id="getOrdersByStore" resultType="OrderVo"> SELECT * FROM orders WHERE store_id = #{storeId} </select>
+    <update id="acceptOrder"> UPDATE orders SET status = 'Accepted' WHERE order_id = #{orderId} </update>
+    <update id="rejectOrder"> UPDATE orders SET status = 'Rejected' WHERE order_id = #{orderId} </update>
+    <select id="getOrderStatus" resultType="OrderVo"> SELECT * FROM orders WHERE store_id = #{storeId} </select>
+    <select id="getOrderItemsByOrderId" resultType="OrderItemVo"> SELECT * FROM order_item WHERE order_id = #{orderId} </select>
 </mapper>
