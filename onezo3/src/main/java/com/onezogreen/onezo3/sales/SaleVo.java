@@ -1,4 +1,4 @@
-package com.onezogreen.onezo3.Sales;
+package com.onezogreen.onezo3.sales;
 
 import lombok.*;
 
@@ -15,5 +15,6 @@ public class SaleVo {
     private Long storeId;
     private Long menuId;
     private Double amount;
+    private String takeInOut;
     private Timestamp saleDate;
 }
