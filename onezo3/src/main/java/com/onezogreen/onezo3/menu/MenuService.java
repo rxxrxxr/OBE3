@@ -13,11 +13,9 @@ public class MenuService {
     private final MenuMapper menuMapper;
 
     public List<MenuVo> menuSelect(Long store_id, String menu_category){
-        System.out.println("Service = " + menu_category);
         MenuVo menuVo = new MenuVo();
         menuVo.setStore_id(store_id);
         menuVo.setMenu_category(menu_category);
-        System.out.println("vo = " + menuVo);
         List<MenuVo> menuList = menuMapper.menuSelect(menuVo);
         return menuList;
     }
