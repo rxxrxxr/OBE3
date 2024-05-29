@@ -1,5 +1,6 @@
 package com.onezogreen.onezo3.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.onezogreen.onezo3.login.TokenManager;
 import com.onezogreen.onezo3.manager.ManagerVo;
 import io.jsonwebtoken.Claims;
@@ -46,6 +47,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         try {
             Jws<Claims> jws = tokenManager.validateToken(token.substring("Bearer".length()));
+            Claims payload = jws.getPayload();
+            ObjectMapper objectMapper = new ObjectMapper();
+            System.out.println("jws:"+objectMapper.writeValueAsString(jws));
 
             List<SimpleGrantedAuthority> roles = new ArrayList<>();
             roles.add(new SimpleGrantedAuthority(jws.getPayload().get("email").toString()));

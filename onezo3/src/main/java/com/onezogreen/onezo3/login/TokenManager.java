@@ -5,10 +5,13 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import static io.jsonwebtoken.security.Keys.hmacShaKeyFor;
@@ -32,6 +35,10 @@ public class TokenManager {
     //토큰 검증
     public Jws<Claims> validateToken(String token){
         try{
+            token=token.replaceAll("\\s","");
+
+            SecretKey key= Keys.hmacShaKeyFor(mykey.getBytes(StandardCharsets.UTF_8));
+
             Jws<Claims> jws=Jwts.parser()
                     .setSigningKey(hmacShaKeyFor(mykey.getBytes()))
                     .build()
