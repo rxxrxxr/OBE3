@@ -16,10 +16,10 @@ public class MenuController {
 
     public final MenuService menuService;
 
-    @GetMapping("/soldOut/select/{store_id}")
-    @Operation(summary = "메뉴 조회합니다")
-    public List<MenuVo> selectMenu(@PathVariable Long store_id){
-        List<MenuVo> menuList = menuService.menuSelect(store_id);
+    @GetMapping("/soldOut/select/{store_id}/{menu_category}")
+    @Operation(summary = "메뉴 조회합니다", description = "카테고리는 ALL,SET,CHICKEN,SIDE,DRINK,SAUCE 로 값을 넘겨주세요")
+    public List<MenuVo> selectMenu(@PathVariable Long store_id, @PathVariable String menu_category){
+        List<MenuVo> menuList = menuService.menuSelect(store_id ,menu_category);
         if(menuList == null || menuList.isEmpty()){
             throw new BizException(ErrorCode.NOTSELECT);
         }

@@ -15,5 +15,6 @@ public class MenuVo {
     private Long store_id;
     private String menu_name;
     private String menu_image;
+    private String  menu_category;
     private sold_out_yn sold_out_yn;
 }
