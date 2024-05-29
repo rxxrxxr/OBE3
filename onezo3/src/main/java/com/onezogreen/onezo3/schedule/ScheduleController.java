@@ -2,9 +2,11 @@ package com.onezogreen.onezo3.schedule;
 
 import com.onezogreen.onezo3.exception.BizException;
 import com.onezogreen.onezo3.exception.ErrorCode;
+import com.onezogreen.onezo3.manager.ManagerVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -17,9 +19,11 @@ public class ScheduleController {
 
     public final ScheduleService scheduleService;
 
-    @GetMapping("select/{store_id}")
+    @GetMapping("select")
     @Operation(summary = "일정을 조회합니다")
-    public List<ScheduleVo> selectSchedule(@PathVariable Long store_id){
+    public List<ScheduleVo> selectSchedule( Authentication authentication){
+        ManagerVo managerVo = (ManagerVo)authentication.getPrincipal();
+        Long store_id = managerVo.getStore_id();
         List<ScheduleVo>schedulList = scheduleService.scheduleSelect(store_id);
         if(schedulList == null || schedulList.isEmpty()){
             throw new BizException(ErrorCode.NOTSELECT);
@@ -27,9 +31,11 @@ public class ScheduleController {
         return schedulList;
     }
 
-    @PostMapping("insert/{store_id}")
+    @PostMapping("insert")
     @Operation(summary = "일정을 추가합니다", description = "날짜 포맷은 yyyy-mm-dd로 맞춰주세요")
-    public boolean insertSchedule(@PathVariable Long store_id, @RequestBody ScheduleVo scheduleVo){
+    public boolean insertSchedule(Authentication authentication, @RequestBody ScheduleVo scheduleVo){
+        ManagerVo managerVo = (ManagerVo)authentication.getPrincipal();
+        Long store_id = managerVo.getStore_id();
         boolean check = scheduleService.scheduleInsert(store_id, scheduleVo);
         if(check == false){
             throw new BizException(ErrorCode.INSERTFAIL);
