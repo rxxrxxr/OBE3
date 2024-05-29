@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface SalesMapper {
-    List<SaleVo> getSalesByStore(@Param("storeId") Long storeId);
-    List<SaleVo> getSalesByMenu(@Param("storeId") Long storeId, @Param("menuId") Long menuId);
+    List<SaleVo> getSalesByStore(Long storeId);
+    List<SaleVo> getSalesByMenu(Long storeId,Long menuId);
 }

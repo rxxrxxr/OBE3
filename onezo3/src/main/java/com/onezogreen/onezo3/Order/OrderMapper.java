@@ -7,9 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    List<OrderVo> getOrdersByStore(@Param("storeId") Long storeId);
-    void acceptOrder(@Param("orderId") Long orderId);
-    void rejectOrder(@Param("orderId") Long orderId);
-    List<OrderVo> getOrderStatus(@Param("storeId") Long storeId);
-    List<OrderItemVo> getOrderItemsByOrderId(@Param("orderId") Long orderId);  // 주문 항목 조회
+    List<OrderVo> getOrdersByStore(Long storeId);
+    void acceptOrder(Long orderId);
+    void rejectOrder(Long orderId);
+    List<OrderVo> getOrderStatus(Long storeId);
+    List<OrderItemVo> getOrderItemsByOrderId(Long orderId);  // 주문 항목 조회
 }
