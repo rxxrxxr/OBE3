@@ -1,7 +1,7 @@
 package com.onezogreen.onezo3.config;
 
 import com.onezogreen.onezo3.login.TokenManager;
-import com.onezogreen.onezo3.user.UserVo;
+import com.onezogreen.onezo3.manager.ManagerVo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -53,7 +53,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
             Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(
-                    UserVo.builder()
+                    ManagerVo.builder()
                             .email(jws.getPayload().get("email").toString())
                             .store_id(Long.parseLong(jws.getPayload().get("store_id").toString()))
                             .manager_id(Long.parseLong(jws.getPayload().get("manager_id").toString()))
