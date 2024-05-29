@@ -14,3 +14,7 @@ mybatis:
     cache-enabled: true
     default-fetch-size: 100
     default-statement-timeout: 30
+
+p3:
+  jwt:
+    secret: 3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject3onezoproject

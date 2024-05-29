@@ -1,4 +1,14 @@
 package com.onezogreen.onezo3.user;
 
-public class User {
+import lombok.*;
+
+@Getter
+@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UserVo {
+    private String email;
+    private String password;
 }
