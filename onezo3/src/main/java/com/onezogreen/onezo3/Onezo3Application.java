@@ -6,7 +6,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@OpenAPIDefinition(servers = {@Server(url = "https://admin.hellomh.site")})
+//@OpenAPIDefinition(servers = {@Server(url = "https://admin.hellomh.site")})
 @SpringBootApplication
 @MapperScan("com.onezogreen.onezo3")
 public class Onezo3Application {
