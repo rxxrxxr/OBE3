@@ -31,7 +31,7 @@ public class MenuController {
         return menuList;
     }
 
-    @PutMapping("/soldOut/update/{store_id}/{menu_id}")
+    @PutMapping("/soldOut/update/menu_id}")
     @Operation(summary = "메뉴에 품절상태를 바꿉니다", description = "픔절여부 N -> Y 또는 Y -> N")
     public boolean changeSoldOut(@PathVariable Long menu_id, @RequestBody MenuVo menuVo, Authentication authentication){
         ManagerVo managerVo = (ManagerVo)authentication.getPrincipal();
