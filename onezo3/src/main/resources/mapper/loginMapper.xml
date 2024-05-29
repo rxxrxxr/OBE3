@@ -5,14 +5,12 @@
 
 <mapper namespace="com.onezogreen.onezo3.login.LoginMapper">
     <select id="loginSelect"
-            resultType="UserVo">
+            resultType="ManagerVo">
         SELECT * FROM manager WHERE email = #{email} AND password=#{password}
     </select>
 <!--    email select-->
-    <select id="selectUserByEmail" resultType="userVo" parameterType="String">
+    <select id="selectUserByEmail" resultType="ManagerVo" parameterType="String">
         SELECT * FROM manager WHERE email = #{email}
     </select>
-
-
 
 </mapper>

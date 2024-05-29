@@ -1,6 +1,6 @@
 package com.onezogreen.onezo3.login;
 
-import com.onezogreen.onezo3.user.UserVo;
+import com.onezogreen.onezo3.manager.ManagerVo;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -19,12 +19,12 @@ public class TokenManager {
     @Value("${p3.jwt.secret}")
     private String mykey;
     //토큰 발급
-    public String generateToken(UserVo uservo){
+    public String generateToken(ManagerVo managerVo){
         return Jwts.builder()
                 .setSubject("onezo3Token")
-                .claim("email",uservo.getEmail())
-                .claim("manager_id",uservo.getManager_id())
-                .claim("store_id",uservo.getStore_id())
+                .claim("email",managerVo.getEmail())
+                .claim("manager_id",managerVo.getManager_id())
+                .claim("store_id",managerVo.getStore_id())
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*15))
                 .signWith(hmacShaKeyFor(mykey.getBytes()))
                 .compact();
