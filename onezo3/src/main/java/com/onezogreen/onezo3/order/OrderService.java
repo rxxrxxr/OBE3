@@ -2,7 +2,6 @@ package com.onezogreen.onezo3.order;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -19,10 +18,11 @@ public class OrderService {
         return orders;
     }
 
-    public void acceptOrder(Long orderId) {
+    public void acceptOrder(Long storeId, Long orderId) {
         orderMapper.acceptOrder(orderId);
     }
-    public void rejectOrder(Long orderId) {
+
+    public void rejectOrder(Long storeId, Long orderId) {
         orderMapper.rejectOrder(orderId);
     }
 

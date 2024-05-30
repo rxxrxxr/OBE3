@@ -14,31 +14,27 @@ import java.util.List;
 public class SalesController {
     private final SalesService salesService;
 
-
-    @Operation(summary = "매장의 매출 조회",
-            description = "로그인한 사용자의 매장의 전체 매출을 조회")
-    @GetMapping("/store")
-    public List<SaleVo> getSalesByStore(Authentication authentication) {
+    @Operation(summary = "특정 매장의 매출 조회",
+            description = "storeId를 URL 경로로 받아서 해당 매장의 전체 매출을 조회")
+    @GetMapping("/store/{storeId}")
+    public List<SaleVo> getSalesByStore(@PathVariable Long storeId, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        Long storeId = managerVo.getStore_id();
         return salesService.getSalesByStore(storeId);
     }
 
-    @Operation(summary = "매장의 메뉴별 매출 조회",
-            description = "로그인한 사용자의 매장의 특정 메뉴의 매출을 조회")
-    @GetMapping("/store/menu/{menuId}")
-    public List<SaleVo> getSalesByMenu(Authentication authentication, @PathVariable Long menuId) {
+    @Operation(summary = "특정 매장의 메뉴별 매출 조회",
+            description = "storeId와 menuId를 URL 경로로 받아서 해당 매장의 특정 메뉴의 매출을 조회")
+    @GetMapping("/store/{storeId}/menu/{menuId}")
+    public List<SaleVo> getSalesByMenu(@PathVariable Long storeId, @PathVariable Long menuId, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        Long storeId = managerVo.getStore_id();
         return salesService.getSalesByMenu(storeId, menuId);
     }
 
-    @Operation(summary = "매장의 주문 유형별 매출 조회",
-            description = "로그인한 사용자의 매장의 특정 주문 유형의 매출을 조회")
-    @GetMapping("/store/type/{takeInOut}")
-    public List<SaleVo> getSalesByType(Authentication authentication, @PathVariable String takeInOut) {
+    @Operation(summary = "특정 매장의 주문 유형별 매출 조회",
+            description = "storeId와 takeInOut을 URL 경로로 받아서 해당 매장의 특정 주문 유형의 매출을 조회")
+    @GetMapping("/store/{storeId}/type/{takeInOut}")
+    public List<SaleVo> getSalesByType(@PathVariable Long storeId, @PathVariable String takeInOut, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        Long storeId = managerVo.getStore_id();
         return salesService.getSalesByType(storeId, takeInOut);
     }
 }
