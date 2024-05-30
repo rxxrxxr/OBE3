@@ -18,9 +18,7 @@ public class SalesController {
             description = "storeId를 URL 경로로 받아서 해당 매장의 전체 매출을 조회")
     @GetMapping("/store/{storeId}")
     public List<SaleVo> getSalesByStore(@PathVariable Long storeId, Authentication authentication) {
-        // 인증된 사용자 정보 가져오기
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        // 매장 권한 확인 등의 로직이 필요할 수 있습니다.
         return salesService.getSalesByStore(storeId);
     }
 
@@ -28,9 +26,7 @@ public class SalesController {
             description = "storeId와 menuId를 URL 경로로 받아서 해당 매장의 특정 메뉴의 매출을 조회")
     @GetMapping("/store/{storeId}/menu/{menuId}")
     public List<SaleVo> getSalesByMenu(@PathVariable Long storeId, @PathVariable Long menuId, Authentication authentication) {
-        // 인증된 사용자 정보 가져오기
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        // 매장 권한 확인 등의 로직이 필요할 수 있습니다.
         return salesService.getSalesByMenu(storeId, menuId);
     }
 
@@ -38,9 +34,7 @@ public class SalesController {
             description = "storeId와 takeInOut을 URL 경로로 받아서 해당 매장의 특정 주문 유형의 매출을 조회")
     @GetMapping("/store/{storeId}/type/{takeInOut}")
     public List<SaleVo> getSalesByType(@PathVariable Long storeId, @PathVariable String takeInOut, Authentication authentication) {
-        // 인증된 사용자 정보 가져오기
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        // 매장 권한 확인 등의 로직이 필요할 수 있습니다.
         return salesService.getSalesByType(storeId, takeInOut);
     }
 }

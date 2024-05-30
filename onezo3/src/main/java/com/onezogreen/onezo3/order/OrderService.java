@@ -19,12 +19,10 @@ public class OrderService {
     }
 
     public void acceptOrder(Long storeId, Long orderId) {
-        // storeId를 기반으로 주문이 해당 매장에 속하는지 확인하는 로직이 필요할 수 있습니다.
         orderMapper.acceptOrder(orderId);
     }
 
     public void rejectOrder(Long storeId, Long orderId) {
-        // storeId를 기반으로 주문이 해당 매장에 속하는지 확인하는 로직이 필요할 수 있습니다.
         orderMapper.rejectOrder(orderId);
     }
 
