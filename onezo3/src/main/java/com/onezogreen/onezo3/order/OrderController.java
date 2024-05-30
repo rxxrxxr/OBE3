@@ -14,35 +14,35 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    @Operation(summary = "매장의 모든 주문 조회",
-            description = "로그인한 사용자의 매장의 모든 주문을 조회")
-    @GetMapping("/store")
-    public List<OrderVo> getOrdersByStore(Authentication authentication) {
+    @Operation(summary = "특정 매장의 모든 주문 조회",
+            description = "storeId를 URL 경로로 받아서 해당 매장의 모든 주문을 조회")
+    @GetMapping("/store/{storeId}")
+    public List<OrderVo> getOrdersByStore(@PathVariable Long storeId, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        Long storeId = managerVo.getStore_id();
         return orderService.getOrdersByStore(storeId);
     }
 
     @Operation(summary = "주문 수락",
-            description = "order_id를 param값으로 받아서 해당 주문을 수락")
-    @PutMapping("/accept/{orderId}")
-    public void acceptOrder(@PathVariable Long orderId) {
-        orderService.acceptOrder(orderId);
+            description = "storeId와 orderId를 URL 경로로 받아서 해당 매장의 특정 주문을 수락")
+    @PutMapping("/accept/{storeId}/{orderId}")
+    public void acceptOrder(@PathVariable Long storeId, @PathVariable Long orderId, Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        orderService.acceptOrder(storeId, orderId);
     }
 
     @Operation(summary = "주문 거절",
-            description = "order_id를 param값으로 받아서 해당 주문을 거절")
-    @PutMapping("/reject/{orderId}")
-    public void rejectOrder(@PathVariable Long orderId) {
-        orderService.rejectOrder(orderId);
+            description = "storeId와 orderId를 URL 경로로 받아서 해당 매장의 특정 주문을 거절")
+    @PutMapping("/reject/{storeId}/{orderId}")
+    public void rejectOrder(@PathVariable Long storeId, @PathVariable Long orderId, Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        orderService.rejectOrder(storeId, orderId);
     }
 
-    @Operation(summary = "매장의 모든 주문 상태 조회",
-            description = "로그인한 사용자의 매장의 모든 주문 상태를 조회")
-    @GetMapping("/status")
-    public List<OrderVo> getOrderStatus(Authentication authentication) {
+    @Operation(summary = "특정 매장의 모든 주문 상태 조회",
+            description = "storeId를 URL 경로로 받아서 해당 매장의 모든 주문 상태를 조회")
+    @GetMapping("/status/{storeId}")
+    public List<OrderVo> getOrderStatus(@PathVariable Long storeId, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
-        Long storeId = managerVo.getStore_id();
         return orderService.getOrderStatus(storeId);
     }
 }
