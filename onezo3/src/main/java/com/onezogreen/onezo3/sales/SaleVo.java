@@ -15,6 +15,6 @@ public class SaleVo {
     private Long storeId;
     private Long menuId;
     private Double amount;
-    private String takeInOut;
     private Timestamp saleDate;
+    private TakeInOut takeInOut;
 }

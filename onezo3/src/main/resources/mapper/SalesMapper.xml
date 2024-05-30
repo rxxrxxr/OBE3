@@ -2,15 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onezogreen.onezo3.sales.SalesMapper">
-    <select id="getSalesByStore" resultType="SaleVo">
-        SELECT * FROM sales WHERE store_id = #{storeId}
+    <select id="getSalesByStore" resultType="com.onezogreen.onezo3.sales.SaleVo">
+        SELECT sale_id, store_id, order_id, total_amount, take_in_out AS takeInOutValue, sale_date
+        FROM sales
+        WHERE store_id = #{storeId}
     </select>
 
-    <select id="getSalesByMenu" resultType="SaleVo">
-        SELECT * FROM sales WHERE store_id = #{storeId} AND menu_id = #{menuId}
+    <select id="getSalesByMenu" resultType="com.onezogreen.onezo3.sales.SaleVo">
+        SELECT s.sale_id, s.store_id, s.order_id, s.total_amount, s.take_in_out AS takeInOutValue, s.sale_date
+        FROM sales s
+        JOIN order_item oi ON s.order_id = oi.order_id
+        WHERE s.store_id = #{storeId} AND oi.menu_id = #{menuId}
     </select>
 
-    <select id="getSalesByType" resultType="SaleVo">
-        SELECT * FROM sales WHERE store_id = #{storeId} AND take_in_out = #{takeInOut}
+    <select id="getSalesByType" resultType="com.onezogreen.onezo3.sales.SaleVo">
+        SELECT sale_id, store_id, order_id, total_amount, take_in_out AS takeInOutValue, sale_date
+        FROM sales
+        WHERE store_id = #{storeId} AND take_in_out = #{takeInOut}
     </select>
 </mapper>
