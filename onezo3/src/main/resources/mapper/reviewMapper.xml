@@ -7,7 +7,8 @@
     <update id="updateReply"
             parameterType="ReviewVo">
         update review
-        set reply = #{reply}, replyDelete_yn = 'N'
+        set reply          = #{reply},
+            replyDelete_yn = 'N'
         where review_id = #{review_id}
     </update>
 
@@ -27,9 +28,11 @@
 
     <select id="selectReviewReply"
             parameterType="ReviewVo">
-        select reply, review, star
-        from review
-        where store_id = #{store_id}
+        select r.reply, r.review, r.star, p.order_id
+        from review r
+                 join member m ON r.member_id = m.member_id
+                 join purchase p ON m.member_id = p.member_id
+        where r.store_id = #{store_id}
     </select>
 
 </mapper>
