@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 public class SaleVo {
     private Long saleId;
     private Long storeId;
+    private Long orderId;
     private Long menuId;
     private Double amount;
     private Timestamp saleDate;

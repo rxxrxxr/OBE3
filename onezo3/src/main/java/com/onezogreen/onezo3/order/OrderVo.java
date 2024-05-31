@@ -19,5 +19,5 @@ public class OrderVo {
     private OrderStatus status;
     private Timestamp orderDate;
     private TakeInOut takeInOut;
-    private List<OrderItemVo> orderItems;  // 주문 항목 리스트
+    private List<OrderItemVo> orderItems;
 }

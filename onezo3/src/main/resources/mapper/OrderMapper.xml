@@ -2,8 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.onezogreen.onezo3.order.OrderMapper">
-    <select id="getOrdersByStore" resultType="com.onezogreen.onezo3.order.OrderVo">
-        SELECT order_id, store_id, member_id, status AS statusValue, take_in_out AS takeInOutValue, order_date
+
+    <resultMap id="OrderResultMap" type="com.onezogreen.onezo3.order.OrderVo">
+        <id property="orderId" column="order_id" />
+        <result property="storeId" column="store_id" />
+        <result property="memberId" column="member_id" />
+        <result property="status" column="status" />
+        <result property="orderDate" column="order_date" />
+        <result property="takeInOut" column="take_in_out" />
+    </resultMap>
+
+    <select id="getOrdersByStore" resultMap="OrderResultMap">
+        SELECT order_id, store_id, member_id, status, take_in_out, order_date
         FROM orders
         WHERE store_id = #{storeId}
     </select>
@@ -14,15 +24,16 @@
         WHERE store_id = #{storeId} AND order_id = #{orderId}
     </update>
 
-    <select id="getOrderStatus" resultType="com.onezogreen.onezo3.order.OrderVo">
-        SELECT order_id, store_id, member_id, status AS statusValue, take_in_out AS takeInOutValue, order_date
+    <select id="getOrderStatus" resultMap="OrderResultMap">
+        SELECT order_id, store_id, member_id, status, take_in_out, order_date
         FROM orders
         WHERE store_id = #{storeId}
     </select>
 
     <select id="getOrderItemsByOrderId" resultType="com.onezogreen.onezo3.order.OrderItemVo">
-        SELECT order_item_id, order_id, menu_id, quantity, price
+        SELECT order_item_id, order_id, menu_id, quantity
         FROM order_item
         WHERE order_id = #{orderId}
     </select>
+
 </mapper>

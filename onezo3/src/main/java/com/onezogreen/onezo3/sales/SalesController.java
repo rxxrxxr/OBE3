@@ -32,7 +32,7 @@ public class SalesController {
 
     @Operation(summary = "매장의 주문 유형별 매출 조회", description = "로그인한 사용자의 매장의 특정 주문 유형의 매출을 조회합니다.")
     @GetMapping("/store/type/{takeInOut}")
-    public List<SaleVo> getSalesByType(Authentication authentication, @PathVariable String takeInOut) {
+    public List<SaleVo> getSalesByType(Authentication authentication, @PathVariable TakeInOut takeInOut) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
         Long storeId = managerVo.getStore_id();
         return saleService.getSalesByType(storeId, takeInOut);
