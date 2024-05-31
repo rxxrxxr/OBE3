@@ -20,13 +20,13 @@ public class OrderService {
 
     public boolean acceptOrder(Long storeId, Long orderId) {
         // 주문 상태를 "수락됨"으로 업데이트
-        int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.ACCEPTED.getStatus());
+        int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.ACCEPTED);
         return updatedRows > 0;
     }
 
     public boolean rejectOrder(Long storeId, Long orderId) {
         // 주문 상태를 "거절됨"으로 업데이트
-        int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.REJECTED.getStatus());
+        int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.REJECTED);
         return updatedRows > 0;
     }
 

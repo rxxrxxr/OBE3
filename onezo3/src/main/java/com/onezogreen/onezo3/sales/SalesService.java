@@ -17,7 +17,7 @@ public class SalesService {
         return saleMapper.getSalesByMenu(storeId, menuId);
     }
 
-    public List<SaleVo> getSalesByType(Long storeId, String takeInOut) {
+    public List<SaleVo> getSalesByType(Long storeId, TakeInOut takeInOut) {
         return saleMapper.getSalesByType(storeId, takeInOut);
     }
 }
