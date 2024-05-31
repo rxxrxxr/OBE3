@@ -12,6 +12,13 @@
         <result property="takeInOut" column="take_in_out" />
     </resultMap>
 
+    <resultMap id="OrderItemResultMap" type="com.onezogreen.onezo3.order.OrderItemVo">
+        <id property="orderItemId" column="order_item_id" />
+        <result property="orderId" column="order_id" />
+        <result property="menuId" column="menu_id" />
+        <result property="quantity" column="quantity" />
+    </resultMap>
+
     <select id="getOrdersByStore" resultMap="OrderResultMap">
         SELECT order_id, store_id, member_id, status, take_in_out, order_date
         FROM orders
@@ -24,13 +31,13 @@
         WHERE store_id = #{storeId} AND order_id = #{orderId}
     </update>
 
-    <select id="getOrderStatus" resultMap="OrderResultMap">
+    <select id="getOrderStatusByStore" resultMap="OrderResultMap">
         SELECT order_id, store_id, member_id, status, take_in_out, order_date
         FROM orders
-        WHERE store_id = #{storeId}
+        WHERE store_id = #{storeId} AND order_id = #{orderId}
     </select>
 
-    <select id="getOrderItemsByOrderId" resultType="com.onezogreen.onezo3.order.OrderItemVo">
+    <select id="getOrderItemsByOrderId" resultMap="OrderItemResultMap">
         SELECT order_item_id, order_id, menu_id, quantity
         FROM order_item
         WHERE order_id = #{orderId}
