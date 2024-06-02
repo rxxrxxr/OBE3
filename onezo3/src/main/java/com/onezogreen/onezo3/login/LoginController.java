@@ -13,16 +13,19 @@ public class LoginController {
     private final LoginService loginService;
     private final TokenManager tokenManager;
 
+
     @Operation(summary = "로그인",description = "db에 존재하는 아이디와 비밀번호를 사용해 로그인")
     @PostMapping("/login")
-    public ResponseEntity<JwtTokenDto> token(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity token(@RequestBody LoginRequest loginRequest) {
         ManagerVo managerVo=loginService.logIn(loginRequest.getEmail(), loginRequest.getPassword());
         if(managerVo==null){
             throw new RuntimeException("회원이 아닙니다.");
         }
-        JwtTokenDto jwtTokenDto = new JwtTokenDto(tokenManager.generateToken(managerVo));
+        String token = tokenManager.generateToken(managerVo);
+//        JwtTokenDto jwtTokenDto = new JwtTokenDto(tokenManager.generateToken(managerVo));
+        LoginResponse loginResponse=new LoginResponse( managerVo.getStore_id(),token);
 
-        return ResponseEntity.ok(jwtTokenDto);
+        return ResponseEntity.ok(loginResponse);
     }
 
 }
