@@ -32,7 +32,7 @@ public class ScheduleController {
     }
 
     @PostMapping("insert")
-    @Operation(summary = "일정을 추가합니다", description = "날짜 포맷은 yyyy-mm-dd로 맞춰주세요")
+    @Operation(summary = "일정을 추가합니다", description = "날짜 포맷은 yyyy-MM-dd HH:mm:ss로 맞춰주세요")
     public boolean insertSchedule(Authentication authentication, @RequestBody ScheduleVo scheduleVo){
         ManagerVo managerVo = (ManagerVo)authentication.getPrincipal();
         Long store_id = managerVo.getStore_id();
@@ -44,7 +44,7 @@ public class ScheduleController {
     }
 
     @PutMapping("update/{schedule_id}")
-    @Operation(summary = "일정을 수정합니다", description = "날짜 포맷은 yyyy-mm-dd로 맞춰주세요")
+    @Operation(summary = "일정을 수정합니다", description = "날짜 포맷은 yyyy-MM-dd HH:mm:ss로 맞춰주세요")
     public boolean updateSchedule(@PathVariable Long schedule_id, @RequestBody ScheduleVo scheduleVo){
         boolean check = scheduleService.scheduleUpdate(schedule_id, scheduleVo);
         if(check == false){
