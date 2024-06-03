@@ -7,12 +7,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/sales")
 @RequiredArgsConstructor
 public class SalesController {
     private final SalesService saleService;
+
 
     @Operation(summary = "매장의 매출 조회", description = "로그인한 사용자의 매장의 전체 매출을 조회합니다.")
     @GetMapping("/store")
@@ -36,5 +38,13 @@ public class SalesController {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
         Long storeId = managerVo.getStore_id();
         return saleService.getSalesByType(storeId, takeInOut);
+    }
+
+    @Operation(summary = "매장의 월별 매출 조회", description = "로그인한 사용자의 매장의 월별 매출을 조회합니다.")
+    @GetMapping("/store/monthly")
+    public Map<String, List<SaleVo>> getMonthlySales(Authentication authentication, @RequestParam String month) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        Long storeId = managerVo.getStore_id();
+        return saleService.getMonthlySales(storeId, month);
     }
 }
