@@ -8,9 +8,9 @@
         <result property="storeId" column="store_id" />
         <result property="orderId" column="order_id" />
         <result property="menuId" column="menu_id" />
-        <result property="amount" column="amount" />
+        <result property="amount" column="amount" javaType="int" />
         <result property="saleDate" column="sale_date" />
-        <result property="takeInOut" column="take_in_out" />
+        <result property="takeInOut" column="take_in_out" javaType="com.onezogreen.onezo3.sales.TakeInOut" />
     </resultMap>
 
     <select id="getSalesByStore" resultMap="SaleResultMap">
@@ -20,10 +20,9 @@
     </select>
 
     <select id="getSalesByMenu" resultMap="SaleResultMap">
-        SELECT s.sale_id, s.store_id, s.order_id, s.menu_id, s.amount, s.sale_date, s.take_in_out
-        FROM sales s
-        JOIN order_item oi ON s.order_id = oi.order_id
-        WHERE s.store_id = #{storeId} AND oi.menu_id = #{menuId}
+        SELECT sale_id, store_id, order_id, menu_id, amount, sale_date, take_in_out
+        FROM sales
+        WHERE store_id = #{storeId} AND menu_id = #{menuId}
     </select>
 
     <select id="getSalesByType" resultMap="SaleResultMap">
@@ -31,4 +30,11 @@
         FROM sales
         WHERE store_id = #{storeId} AND take_in_out = #{takeInOut}
     </select>
+
+    <select id="getSalesByMonth" resultMap="SaleResultMap">
+        SELECT sale_id, store_id, order_id, menu_id, amount, sale_date, take_in_out
+        FROM sales
+        WHERE store_id = #{storeId} AND DATE_FORMAT(sale_date, '%Y-%m') = #{month}
+    </select>
+
 </mapper>
