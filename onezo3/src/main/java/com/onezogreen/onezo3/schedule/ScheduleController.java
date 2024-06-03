@@ -60,4 +60,32 @@ public class ScheduleController {
         return check;
     }
 
+    @PostMapping("regularHoliday")
+    @Operation(summary = "정기휴무 등록 ", description = "[\n" +
+            "  {\n" +
+            "    \"dayOfWeek\": \"월요일\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"dayOfWeek\": \"화요일\"\n" +
+            "  }\n" +
+            "]")
+    public boolean insertRegularHoliday(Authentication authentication, @RequestBody List<WeekDto> weekDtos){
+        try {
+            ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+            Long store_id = managerVo.getStore_id();
+
+            weekDtos.stream().forEach(
+                    weekDto -> scheduleService.regularHolidayInsert(
+                            RegularHolidayVo.builder()
+                                    .store_id(store_id)
+                                    .week(weekDto.getDayOfWeek())
+                                    .build())
+            );
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }
