@@ -21,5 +21,5 @@ public class OrderVo {
     private Timestamp orderDate;
     private TakeInOut takeInOut;
     private List<OrderItemVo> orderItems;
-    private BigDecimal totalPrice;
+    private int totalPrice;
 }
