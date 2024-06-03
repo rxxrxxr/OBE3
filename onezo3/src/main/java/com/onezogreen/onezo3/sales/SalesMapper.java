@@ -12,6 +12,6 @@ public interface SalesMapper {
     List<SaleVo> getSalesByType(Long storeId, TakeInOut takeInOut);
 
 
-    @Select("SELECT * FROM sales WHERE store_id = #{storeId} AND DATE_FORMAT(sale_date, '%Y-%m') = #{month}")
+//    @Select("SELECT * FROM sales WHERE store_id = #{storeId} AND DATE_FORMAT(sale_date, '%Y-%m') = #{month}")
     List<SaleVo> getSalesByMonth(Long storeId, String month);
 }

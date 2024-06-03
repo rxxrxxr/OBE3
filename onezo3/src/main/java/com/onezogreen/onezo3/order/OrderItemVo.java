@@ -15,5 +15,5 @@ public class OrderItemVo {
     private Long orderId;
     private Long menuId;
     private int quantity;
-    private BigDecimal price;
+    private int price;
 }
