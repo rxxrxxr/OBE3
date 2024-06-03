@@ -14,4 +14,6 @@ public interface ScheduleMapper {
     boolean scheduleUpdate(ScheduleVo scheduleVo);
 
     boolean scheduleDelete(Long schedule_id);
+
+    void regularHolidayInsert(RegularHolidayVo regularHolidayInsert) ;
 }
