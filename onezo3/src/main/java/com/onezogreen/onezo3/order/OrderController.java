@@ -76,4 +76,16 @@ public class OrderController {
         }
         return check;
     }
+
+    @PutMapping("/cancel/{orderId}")
+    @Operation(summary = "주문 취소", description = "주문 ID를 받아서 해당 주문을 '취소됨' 상태로 변경합니다.")
+    public boolean cancelOrder(@PathVariable Long orderId, Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        Long storeId = managerVo.getStore_id();
+        boolean check = orderService.cancelOrder(storeId, orderId);
+        if (!check) {
+            throw new BizException(ErrorCode.UPDATEFAIL);
+        }
+        return check;
+    }
 }

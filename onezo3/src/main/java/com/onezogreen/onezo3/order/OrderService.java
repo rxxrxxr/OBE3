@@ -44,4 +44,8 @@ public class OrderService {
         int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.COMPLETED);
         return updatedRows > 0;
     }
+    public boolean cancelOrder(Long storeId, Long orderId) {
+        int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.CANCELLED);
+        return updatedRows > 0;
+    }
 }
