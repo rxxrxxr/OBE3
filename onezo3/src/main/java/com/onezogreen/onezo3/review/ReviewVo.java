@@ -14,7 +14,7 @@ public class ReviewVo {
     private Long member_id;
     private Long store_id;
     private int star;
-    private String review;
+    private String comment;
     private String reply;
     private reviewDelete_yn reviewDelete_yn;
     private replyDelete_yn replyDelete_yn;

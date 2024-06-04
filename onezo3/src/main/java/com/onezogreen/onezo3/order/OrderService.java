@@ -30,6 +30,7 @@ public class OrderService {
     public boolean acceptOrder(Long storeId, Long orderId) {
         // 주문 상태를 "조리중"으로 업데이트
         int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.COOKING);
+
         return updatedRows > 0;
     }
 
@@ -38,6 +39,7 @@ public class OrderService {
         int updatedRows = orderMapper.updateOrderStatus(storeId, orderId, OrderStatus.REJECTED);
         return updatedRows > 0;
     }
+
 
     public boolean completeOrder(Long storeId, Long orderId) {
         // 주문 상태를 "조리완료"로 업데이트
@@ -49,3 +51,4 @@ public class OrderService {
         return updatedRows > 0;
     }
 }
+

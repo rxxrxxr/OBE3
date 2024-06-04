@@ -3,6 +3,7 @@ package com.onezogreen.onezo3.order;
 import com.onezogreen.onezo3.sales.TakeInOut;
 import lombok.*;
 
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
@@ -22,4 +23,5 @@ public class OrderVo {
     private TakeInOut takeInOut;
     private List<OrderItemVo> orderItems;
     private int totalPrice;
+
 }

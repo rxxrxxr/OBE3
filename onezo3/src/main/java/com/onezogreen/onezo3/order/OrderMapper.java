@@ -10,3 +10,4 @@ public interface OrderMapper {
     int updateOrderStatus(Long storeId, Long orderId, OrderStatus status);
     List<OrderItemVo> getOrderItemsByOrderId(Long orderId);
 }
+
