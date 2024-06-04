@@ -12,7 +12,7 @@
              , sold_out_yn
           FROM menu
          WHERE store_id = #{store_id}
-        <if test="menu_category != null and menu_category != ''">
+        <if test="menu_category != null and menu_category != '' and menu_category != 'ALL'">
            AND menu_category = #{menu_category}
         </if>
     </select>

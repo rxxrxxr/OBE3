@@ -33,4 +33,10 @@ public class ScheduleService {
         boolean check = scheduleMapper.scheduleDelete(schedule_id);
         return check;
     }
+
+    public boolean regularHolidayInsert(RegularHolidayVo regularHolidayVo){
+        boolean check = true;
+        scheduleMapper.regularHolidayInsert(regularHolidayVo);
+        return check;
+    }
 }

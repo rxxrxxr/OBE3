@@ -26,4 +26,11 @@
     <update id="scheduleDelete" parameterType="Long">
         UPDATE schedule SET delete_yn = 'Y' WHERE schedule_id = #{schedule_id}
     </update>
+
+    <insert id="regularHolidayInsert" parameterType="RegularHolidayVo">
+        INSERT INTO regularHoliday
+        (store_id,week)
+        VALUES
+        (#{store_id}, #{week})
+    </insert>
 </mapper>

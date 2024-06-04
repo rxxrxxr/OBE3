@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -29,8 +28,22 @@ public class OrderController {
         return orderList;
     }
 
+
+    @GetMapping("/store/{status}")
+    @Operation(summary = "매장의 주문 상태별 조회", description = "로그인한 사용자의 매장의 특정 상태의 주문을 조회합니다.")
+    public List<OrderVo> getOrdersByStatus(@PathVariable OrderStatus status, Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        Long storeId = managerVo.getStore_id();
+        List<OrderVo> orderList = orderService.getOrdersByStatus(storeId, status);
+        if (orderList == null || orderList.isEmpty()) {
+            throw new BizException(ErrorCode.NOTSELECT);
+        }
+        return orderList;
+    }
+
     @PutMapping("/accept/{orderId}")
-    @Operation(summary = "주문 수락", description = "order_id를 받아서 해당 주문을 수락합니다.")
+    @Operation(summary = "주문 수락", description = "주문 ID를 받아서 해당 주문을 '조리중' 상태로 변경합니다.")
+
     public boolean acceptOrder(@PathVariable Long orderId, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
         Long storeId = managerVo.getStore_id();
@@ -42,7 +55,8 @@ public class OrderController {
     }
 
     @PutMapping("/reject/{orderId}")
-    @Operation(summary = "주문 거절", description = "order_id를 받아서 해당 주문을 거절합니다.")
+
+    @Operation(summary = "주문 거절", description = "주문 ID를 받아서 해당 주문을 '거절됨' 상태로 변경합니다.")
     public boolean rejectOrder(@PathVariable Long orderId, Authentication authentication) {
         ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
         Long storeId = managerVo.getStore_id();
@@ -52,6 +66,7 @@ public class OrderController {
         }
         return check;
     }
+
 
     @GetMapping("/status")
     @Operation(summary = "매장의 모든 주문 상태 조회", description = "로그인한 사용자의 매장의 모든 주문 상태를 조회합니다.")
@@ -63,5 +78,29 @@ public class OrderController {
             throw new BizException(ErrorCode.NOTSELECT);
         }
         return orderStatusList;
+
+    @PutMapping("/complete/{orderId}")
+    @Operation(summary = "주문 완료", description = "주문 ID를 받아서 해당 주문을 '조리완료' 상태로 변경합니다.")
+    public boolean completeOrder(@PathVariable Long orderId, Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        Long storeId = managerVo.getStore_id();
+        boolean check = orderService.completeOrder(storeId, orderId);
+        if (!check) {
+            throw new BizException(ErrorCode.UPDATEFAIL);
+        }
+        return check;
+    }
+
+    @PutMapping("/cancel/{orderId}")
+    @Operation(summary = "주문 취소", description = "주문 ID를 받아서 해당 주문을 '취소됨' 상태로 변경합니다.")
+    public boolean cancelOrder(@PathVariable Long orderId, Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        Long storeId = managerVo.getStore_id();
+        boolean check = orderService.cancelOrder(storeId, orderId);
+        if (!check) {
+            throw new BizException(ErrorCode.UPDATEFAIL);
+        }
+        return check;
+
     }
 }

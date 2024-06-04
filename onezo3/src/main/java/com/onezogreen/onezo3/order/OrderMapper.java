@@ -6,7 +6,8 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
     List<OrderVo> getOrdersByStore(Long storeId);
+    List<OrderVo> getOrdersByStatus(Long storeId, OrderStatus status);
     int updateOrderStatus(Long storeId, Long orderId, OrderStatus status);
-    List<OrderVo> getOrderStatus(Long storeId);
     List<OrderItemVo> getOrderItemsByOrderId(Long orderId);
 }
+

@@ -20,7 +20,7 @@ public class MenuController {
     public final MenuService menuService;
 
     @GetMapping("/soldOut/select/{menu_category}")
-    @Operation(summary = "메뉴 조회합니다", description = "카테고리는 SET,CHICKEN,SIDE,DRINK,SAUCE 로 값을 넘겨주세요")
+    @Operation(summary = "메뉴 조회합니다", description = "카테고리는 ALL, SET,CHICKEN,SIDE,DRINK,SAUCE 로 값을 넘겨주세요")
     public List<MenuVo> selectMenu(@PathVariable String menu_category, Authentication authentication){
         ManagerVo managerVo = (ManagerVo)authentication.getPrincipal();
         Long store_id = managerVo.getStore_id();
