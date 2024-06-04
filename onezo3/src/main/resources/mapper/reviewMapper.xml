@@ -28,8 +28,9 @@
 
     <select id="selectReviewReply"
             parameterType="ReviewVo">
-        select r.reply, r.comment, r.star, r.review_id
+        select r.reply, r.comment, r.star, r.review_id, m.nickname
         from review r
+        join member m on r.member_id = m.member_id
         where r.store_id = #{store_id}
     </select>
 
