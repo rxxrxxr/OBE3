@@ -28,7 +28,7 @@
 
     <select id="selectReviewReply"
             parameterType="ReviewVo">
-        select r.reply, r.review, r.star, r.review_id
+        select r.reply, r.comment, r.star, r.review_id
         from review r
         where r.store_id = #{store_id}
     </select>
