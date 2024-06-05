@@ -2,6 +2,8 @@ package com.onezogreen.onezo3.review;
 
 import lombok.*;
 
+import java.lang.reflect.Member;
+
 @Getter
 @Setter
 @Data
@@ -18,5 +20,6 @@ public class ReviewVo {
     private String reply;
     private reviewDelete_yn reviewDelete_yn;
     private replyDelete_yn replyDelete_yn;
+    private String nickname;
 
 }

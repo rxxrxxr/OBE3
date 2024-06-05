@@ -14,22 +14,23 @@
 
     <update id="deleteReply"
             parameterType="ReviewVo">
-        update Review
+        update review
         set replyDelete_yn = 'Y'
         where review_id = #{review_id}
     </update>
 
     <update id="deleteReview"
             parameterType="ReviewVo">
-        update Review
+        update review
         set reviewDelete_yn = 'Y'
         where review_id = #{review_id}
     </update>
 
     <select id="selectReviewReply"
             parameterType="ReviewVo">
-        select r.reply, r.comment, r.star, r.review_id
+        select r.reply, r.comment, r.star, r.review_id, m.nickname
         from review r
+        join member m on r.member_id = m.member_id
         where r.store_id = #{store_id}
     </select>
 
