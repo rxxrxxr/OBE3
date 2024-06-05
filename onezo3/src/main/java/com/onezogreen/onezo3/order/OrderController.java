@@ -68,6 +68,7 @@ public class OrderController {
     }
 
 
+
     @GetMapping("/status")
     @Operation(summary = "매장의 모든 주문 상태 조회", description = "로그인한 사용자의 매장의 모든 주문 상태를 조회합니다.")
     public List<OrderVo> getOrderStatus(@PathVariable OrderStatus orderStatus, Authentication authentication) {
@@ -79,6 +80,7 @@ public class OrderController {
         }
         return orderStatusList;
     }
+
 
     @PutMapping("/complete/{orderId}")
     @Operation(summary = "주문 완료", description = "주문 ID를 받아서 해당 주문을 '조리완료' 상태로 변경합니다.")
