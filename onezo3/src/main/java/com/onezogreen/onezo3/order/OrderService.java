@@ -12,17 +12,16 @@ public class OrderService {
     public List<OrderVo> getOrdersByStore(Long storeId) {
         List<OrderVo> orders = orderMapper.getOrdersByStore(storeId);
         for (OrderVo order : orders) {
-            List<OrderItemVo> orderItems = orderMapper.getOrderItemsByOrderId(order.getOrderId());
+            List<OrderItemVo> orderItems = orderMapper.getOrderItemsWithMenuNamesByOrderId(order.getOrderId());
             order.setOrderItems(orderItems);
         }
         return orders;
     }
 
-
     public List<OrderVo> getOrdersByStatus(Long storeId, OrderStatus status) {
         List<OrderVo> orders = orderMapper.getOrdersByStatus(storeId, status);
         for (OrderVo order : orders) {
-            List<OrderItemVo> orderItems = orderMapper.getOrderItemsByOrderId(order.getOrderId());
+            List<OrderItemVo> orderItems = orderMapper.getOrderItemsWithMenuNamesByOrderId(order.getOrderId());
             order.setOrderItems(orderItems);
         }
         return orders;

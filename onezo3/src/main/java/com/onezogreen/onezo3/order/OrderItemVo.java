@@ -16,7 +16,6 @@ public class OrderItemVo {
     private Long orderId;
     private Long menuId;
     private int quantity;
-
     private int price;
-
+    private String menuName;
 }

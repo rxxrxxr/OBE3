@@ -19,6 +19,7 @@
         <result property="menuId" column="menu_id" />
         <result property="quantity" column="quantity" />
         <result property="price" column="price" javaType="int" />
+        <result property="menuName" column="menu_name" />  <!-- 메뉴 이름 매핑 -->
     </resultMap>
 
     <select id="getOrdersByStore" resultMap="OrderResultMap">
@@ -51,6 +52,12 @@
 
     <select id="getOrderItemsByOrderId" resultMap="OrderItemResultMap">
         SELECT oi.order_item_id, oi.order_id, oi.menu_id, oi.quantity, oi.price
+        FROM order_item oi
+        WHERE oi.order_id = #{orderId}
+    </select>
+
+    <select id="getOrderItemsWithMenuNamesByOrderId" resultMap="OrderItemResultMap">
+        SELECT oi.order_item_id, oi.order_id, oi.menu_id, oi.quantity, oi.price, m.menu_name AS menu_name
         FROM order_item oi
         JOIN menu m ON oi.menu_id = m.menu_id
         WHERE oi.order_id = #{orderId}
