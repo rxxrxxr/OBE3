@@ -47,4 +47,11 @@ public class SalesController {
         Long storeId = managerVo.getStore_id();
         return saleService.getMonthlySales(storeId, month);
     }
+    @Operation(summary = "매장의 일별 매출 조회", description = "로그인한 사용자의 매장의 일별 매출을 조회합니다.")
+    @GetMapping("/store/daily")
+    public List<Map<String, Object>> getDailySales(Authentication authentication) {
+        ManagerVo managerVo = (ManagerVo) authentication.getPrincipal();
+        Long storeId = managerVo.getStore_id();
+        return saleService.getDailySales(storeId);
+    }
 }

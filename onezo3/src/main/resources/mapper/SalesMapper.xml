@@ -37,4 +37,10 @@
         WHERE store_id = #{storeId} AND DATE_FORMAT(sale_date, '%Y-%m') = #{month}
     </select>
 
+    <select id="getDailySales" resultMap="SaleResultMap">
+        SELECT sale_id, store_id, order_id, menu_id, amount, sale_date, take_in_out
+        FROM sales
+        WHERE store_id = #{storeId}
+    </select>
+
 </mapper>

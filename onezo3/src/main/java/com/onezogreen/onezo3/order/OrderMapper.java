@@ -9,5 +9,7 @@ public interface OrderMapper {
     List<OrderVo> getOrdersByStatus(Long storeId, OrderStatus status);
     int updateOrderStatus(Long storeId, Long orderId, OrderStatus status);
     List<OrderItemVo> getOrderItemsByOrderId(Long orderId);
+    List<OrderItemVo> getOrderItemsWithMenuNamesByOrderId(Long orderId);  // 메뉴 이름 포함한 주문 아이템 조회
+
 }
 
