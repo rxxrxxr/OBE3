@@ -68,7 +68,6 @@ public class OrderController {
     }
 
 
-
     @PutMapping("/complete/{orderId}")
     @Operation(summary = "주문 완료", description = "주문 ID를 받아서 해당 주문을 '조리완료' 상태로 변경합니다.")
     public boolean completeOrder(@PathVariable Long orderId, Authentication authentication) {

@@ -24,13 +24,5 @@ public enum OrderStatus {
         return status;
     }
 
-    @JsonCreator
-    public static OrderStatus fromStatus(String status) {
-        for (OrderStatus orderStatus : values()) {
-            if (orderStatus.status.equals(status)) {
-                return orderStatus;
-            }
-        }
-        throw new IllegalArgumentException("Unknown status: " + status);
-    }
+
 }
