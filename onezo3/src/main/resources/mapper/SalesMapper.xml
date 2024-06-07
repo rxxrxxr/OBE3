@@ -10,7 +10,8 @@
         <result property="menuId" column="menu_id" />
         <result property="amount" column="amount" javaType="int" />
         <result property="saleDate" column="sale_date" />
-        <result property="takeInOut" column="take_in_out" javaType="com.onezogreen.onezo3.sales.TakeInOut" />
+        <result property="takeInOut" column="take_in_out"
+                javaType="com.onezogreen.onezo3.sales.TakeInOut" />
     </resultMap>
 
     <select id="getSalesByStore" resultMap="SaleResultMap">
